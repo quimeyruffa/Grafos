@@ -1,3 +1,5 @@
+
+
 public class TRABAJO_OBLIGATORIO {
     public static void main(String[] args) {
         GrafoDinamic grafo = new GrafoDinamic();
@@ -70,6 +72,25 @@ public class TRABAJO_OBLIGATORIO {
 			}
 		}
 	}
+	
+	public static void Dijsktra(GrafoDinamic grafo,int origen) {
+        NodoGrafo u;
+        NodoGrafo nodo=grafo.encontrarNodo(origen);
+        nodo.distancia=0;
+        nodo.predecesor=null;
+        while  (!grafo.marcados()){
+            u= grafo.menorNodo();
+            u.marcado=true;
+            int[] adyacentes=grafo.adyacentes(u.valor);
+            for(int i:adyacentes) {
+                nodo=grafo.encontrarNodo(i);
+                if(!nodo.marcado) {
+                    nodo.predecesor=u;
+                    nodo.distancia=u.distancia+grafo.pesoArista(u.valor, i);
+                    }
+                }
 
 
-}
+
+        }
+    }
